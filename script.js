@@ -1,9 +1,11 @@
 let [seconds, minutes, hours] = [0,0,0];
 
 let displayTime = document.getElementById('displayTime');
+let resetBtn = document.getElementById('resetBtn');
+let timer = '';
 
 function stopWatch() {
-    setInterval(() => {
+    timer = setInterval(() => {
         if(minutes < 59) {
             if(seconds < 59) {
                 seconds+=1; 
@@ -22,9 +24,8 @@ function stopWatch() {
     }, 1000);
 }
 
-
 function display(seconds, minutes, hours) {
-    if(seconds < 10) {
+    /* if(seconds < 10) {
         seconds = '0' + seconds;
     }
     if(minutes < 10) {
@@ -32,7 +33,21 @@ function display(seconds, minutes, hours) {
     }
     if (hours < 10) {
         hours = '0' + hours;
-    }
+    } */
+
+    let s = seconds < 10 ? `0${seconds}` : seconds;
+    let m = minutes < 10 ? `0${minutes}` : minutes;
+    let h = hours < 10 ? `0${hours}` : hours;
     
-    displayTime.innerHTML = `${hours}:${minutes}:${seconds}`;
+    displayTime.innerHTML = `${h}:${m}:${s}`;
+}
+
+function watchStop() {
+    clearInterval(timer);
+}
+
+function resetWatch() {
+    clearInterval(timer);
+    [seconds, minutes, hours] = [0,0,0];
+    displayTime.innerHTML = `00:00:00`;
 }
