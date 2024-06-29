@@ -4,8 +4,8 @@ let displayTime = document.getElementById('displayTime');
 
 function stopWatch() {
     setInterval(() => {
-        if(minutes < 60) {
-            if(seconds < 60) {
+        if(minutes < 59) {
+            if(seconds < 59) {
                 seconds+=1; 
             } else {
                 seconds = 0;
@@ -34,5 +34,5 @@ function display(seconds, minutes, hours) {
         hours = '0' + hours;
     }
     
-    displayTime.innerHTML = `${hours} : ${minutes} : ${seconds}`;
+    displayTime.innerHTML = `${hours}:${minutes}:${seconds}`;
 }
