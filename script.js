@@ -44,10 +44,22 @@ function display(seconds, minutes, hours) {
 
 function watchStop() {
     clearInterval(timer);
+    saveData();
 }
 
 function resetWatch() {
     clearInterval(timer);
     [seconds, minutes, hours] = [0,0,0];
     displayTime.innerHTML = `00:00:00`;
+    saveData();
 }
+
+function saveData() {
+    localStorage.setItem("Data", displayTime.innerHTML);
+}
+
+function showNotes() {
+    displayTime.innerHTML = localStorage.getItem("Data")
+}
+
+showNotes();
